@@ -1,0 +1,3 @@
+/mnt/c/Users/jadya/Desktop/Coding Projects/C++/voteApp/build/CMakeFiles/VoteApp.dir
+/mnt/c/Users/jadya/Desktop/Coding Projects/C++/voteApp/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/jadya/Desktop/Coding Projects/C++/voteApp/build/CMakeFiles/rebuild_cache.dir

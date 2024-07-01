@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "generator": "Unix Makefiles",
+            "configurationType": "Debug",
+            "buildRoot": "${workspaceFolder}/build/${name}",
+            "installRoot": "${workspaceFolder}/install/${name}",
+            "cmakeCommandArgs": "",
+            "buildCommandArgs": "",
+            "ctestCommandArgs": "",
+            "inheritEnvironments": [ "linux" ],
+            "variables": []
+        }
+    ]
+}
