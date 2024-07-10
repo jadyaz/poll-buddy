@@ -4,16 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
     <script src="../views/script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form label, .form input, .form button {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        #pollOptions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+        }
+
+        #pollOptions label {
+            display: flex;
+            align-items: center;
+        }
+
+        #pollOptions input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button, input[type="submit"] {
+            width: 50%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            /* Center align the submit button */
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: deeppink;
+        }
+
+        .results-link {
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+    
+    </style>
 </head>
 <body>
-    <h1 id="pollTitle">Loading title...</h1>
     <form id="voteForm">
-        <div id="pollOptions">
-            <!-- Options will be populated here by script.js -->
+        <div class="container">
+            <h1 id="pollTitle">Loading title...</h1>
+            <form id="voteForm">
+                <div id="pollOptions">
+                    <!-- Options will be populated here by script.js -->
+                </div>
+                <input type="submit" value="Vote"/>
+            </form>
+            <a id="resultsLink" class="results-link" href="#">View Results</a>
         </div>
-        <input type="submit" value="Vote"/>
     </form>
 </body>
-</html
+</html>

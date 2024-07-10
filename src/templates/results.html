@@ -4,13 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
     <script src="../views/script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label, form input, form button, .results-link {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
+        }
+
+        .results-link {
+            display: block;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1 id="pollTitle">Loading title...</h1>
-    <div id="pollOptions">
-        <!-- Options will be populated here by script.js -->
+    <div class="container">
+        <h1 id="pollTitle">Loading title...</h1>
+        <div id="pollOptions">
+            <!-- Options will be populated here by script.js -->
+        </div>
     </div>
 </body>
 </html

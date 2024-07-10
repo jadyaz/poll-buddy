@@ -64,8 +64,8 @@ std::unordered_map<std::string, Poll> polls;
 // Main function sets up the server and the routing
 int main() {
     crow::SimpleApp app;  
-    
-    //Endpoint to post a new poll through CROW
+  
+
     CROW_ROUTE(app, "/submit_poll").methods("POST"_method)
     ([&](const crow::request& req) {
         auto json_data = crow::json::load(req.body);

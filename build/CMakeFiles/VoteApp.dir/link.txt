@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/VoteApp.dir/src/main.cpp.o -o VoteApp  /usr/lib/x86_64-linux-gnu/libboost_system.so.1.74.0 -ljsoncpp 
+/usr/bin/c++  -std=c++17 -rdynamic CMakeFiles/VoteApp.dir/src/main.cpp.o -o VoteApp  /usr/lib/x86_64-linux-gnu/libboost_system.so.1.74.0 /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.74.0 -ljsoncpp /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.74.0 

@@ -6,7 +6,6 @@ function addOption() {
     input.name = "option[]";
     input.required = true;
     optionsContainer.appendChild(input);
-    optionsContainer.appendChild(document.createElement("br"));
 }
 
 // Function that handles poll creation form submission
@@ -78,6 +77,9 @@ function loadPollData() {
             pollOptionsContainer.appendChild(label);
             pollOptionsContainer.appendChild(document.createElement('br'));
         });
+
+        // Set the href for the results link
+        document.getElementById('resultsLink').href = '/results/' + encodeURIComponent(pollId);
     })
     .catch(error => {
         console.error('Failed to load poll data:', error);
@@ -113,6 +115,12 @@ function setupVoteFormListener(voteForm) {
         });
     });
 }
+
+if (window.location.pathname.startsWith('/poll/')) {
+    loadPollData();
+}
+
+
 
 function loadResultsData() {
     const pollId = window.location.pathname.split('/results/')[1];

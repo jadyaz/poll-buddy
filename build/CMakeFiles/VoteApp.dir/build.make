@@ -93,6 +93,8 @@ VoteApp_EXTERNAL_OBJECTS =
 VoteApp: CMakeFiles/VoteApp.dir/src/main.cpp.o
 VoteApp: CMakeFiles/VoteApp.dir/build.make
 VoteApp: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.74.0
+VoteApp: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.74.0
+VoteApp: /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.74.0
 VoteApp: CMakeFiles/VoteApp.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/jadya/Desktop/Coding Projects/C++/voteApp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable VoteApp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VoteApp.dir/link.txt --verbose=$(VERBOSE)
