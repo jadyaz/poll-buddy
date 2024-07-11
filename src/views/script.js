@@ -35,6 +35,23 @@ function handlePollFormSubmission(pollForm) {
 }
 
 
+// Function to check if user has already voted (using localStorage for simplicity)
+function hasUserVoted(pollId) {
+    const votedPolls = JSON.parse(localStorage.getItem('votedPolls')) || [];
+    return votedPolls.includes(pollId);
+}
+
+// Function to mark poll as voted in localStorage
+function markAsVoted(pollId) {
+    const votedPolls = JSON.parse(localStorage.getItem('votedPolls')) || [];
+    if (!votedPolls.includes(pollId)) {
+        votedPolls.push(pollId);
+        localStorage.setItem('votedPolls', JSON.stringify(votedPolls));
+    }
+}
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const pollForm = document.getElementById('pollForm');
     if (pollForm) {
@@ -57,7 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadPollData() {
     const pollId = window.location.pathname.split('/poll/')[1];
     if (!pollId) return; // URL doesn't match expected pattern for a poll
-
+    if (hasUserVoted(pollId)) {
+        window.location.href = '/results/' + encodeURIComponent(pollId); // Redirect to a page indicating they've already voted
+        return;
+    }
     fetch('/api/poll/' + encodeURIComponent(pollId))
     .then(response => response.json())
     .then(data => {
@@ -107,6 +127,7 @@ function setupVoteFormListener(voteForm) {
         })
         .then(jsonResponse => {
             console.log(jsonResponse.message); // Log the server's confirmation message.
+            markAsVoted(pollId);
             // Redirect to the results page after a successful vote
             window.location.href = '/results/' + encodeURIComponent(pollId);
         })
@@ -138,6 +159,9 @@ function loadResultsData() {
             optionElement.textContent = `${option}: ${voteCount}`;
             pollOptionsContainer.appendChild(optionElement);
         }
+        const voteLink = document.getElementById("voteLink");
+        const pollUrl = 'poll-buddy.com/poll/' + encodeURIComponent(pollId);
+        voteLink.innerHTML = `Share this link with your voters: <a href="http://${pollUrl}" target="_blank">${pollUrl}</a>`;    
     })
     .catch(error => {
         console.error('Failed to load poll results:', error);

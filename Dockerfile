@@ -1,36 +1,42 @@
-# Use an official Ubuntu base image
-FROM ubuntu:20.04
+# Stage 1: Build stage using an official Ubuntu base image with build tools
+FROM ubuntu:20.04 as builder
 
-# Avoid being prompted during the build process
 ARG DEBIAN_FRONTEND=noninteractive
-
-# Install dependencies and compilers
 RUN apt-get update && apt-get install -y \
     g++ \
     cmake \
     make \
     libboost-all-dev \
     pkg-config \
-    libjsoncpp-dev
+    libjsoncpp-dev \
+ && rm -rf /var/lib/apt/lists/*
 
-# Clean up the apt cache to reduce image size
-RUN rm -rf /var/lib/apt/lists/*
-
-# Set the working directory in the container to /app
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copy the project files into the container
 COPY . .
 
-# Create and move to the build directory to keep the build out of source
-RUN mkdir -p build
-WORKDIR /app/build
+# Run build commands
+RUN mkdir -p build && cd build && cmake .. && make
 
-# Run cmake and make in the build directory
-RUN cmake .. && make
+# Stage 2: Create a new image for runtime
+FROM ubuntu:20.04
 
-# Expose the port the app runs on (8080 in this case)
+WORKDIR /app
+
+# Copy the compiled binary from the build stage
+COPY --from=builder /app/build/VoteApp /app/
+
+# Copy static asset directory and template directory from the build stage
+COPY --from=builder /app/src/static /app/static
+COPY --from=builder /app/src/templates /app/templates
+COPY --from=builder /app/src/views/script.js /app/static/script.js
+
+# Ensure VoteApp is executable (if necessary)
+# RUN chmod +x /app/VoteApp
+
+# Expose the port
 EXPOSE 8080
 
-# Run the built application
-CMD ["./VoteApp"] # Make sure this path points to the actual built executable
+CMD ["./VoteApp"]

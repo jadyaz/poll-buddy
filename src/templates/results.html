@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
-    <script src="../views/script.js"></script>
+    <script src="/static/script.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,6 +25,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             border-radius: 8px;
+            align-items: center;
         }
 
         form {
@@ -40,10 +41,19 @@
         }
 
         .results-link {
-            display: block;
+            display: inline-block; /* Change from display: block; to display: inline-block; */
             text-align: center;
-            color: #007bff;
+            color: deeppink;
             text-decoration: none;
+            margin: 10px auto; /* Center horizontally with margin */
+        }
+        .share-link{
+            white-space: nowrap;
+            display: inline-block; /* Change from display: block; to display: inline-block; */
+            text-align: center;
+            color: deeppink;
+            text-decoration: none;
+            margin: 10px auto; /* Center horizontally with margin */
         }
     </style>
 </head>
@@ -53,6 +63,8 @@
         <div id="pollOptions">
             <!-- Options will be populated here by script.js -->
         </div>
+        <a id="resultsLink" class="results-link" href="http://poll-buddy.com">Create a New Poll</a>
+        <p id = "voteLink" class="share-link">...</p>
     </div>
 </body>
 </html

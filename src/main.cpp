@@ -102,9 +102,9 @@ int main() {
     });
 
     // Serve the HTML poll page
-    CROW_ROUTE(app, "/poll/<string>").methods("GET"_method)
-    ([&](const crow::request& req, const std::string& pollId) {
-        return crow::response(read_file_to_string("../src/templates/poll.html"));
+    CROW_ROUTE(app, "/poll/<string>")
+    ([](const std::string& pollId) {
+        return crow::response(read_file_to_string("./templates/poll.html")); // Correct path for poll.html
     });
 
     //Endpoint to fetch json data for a poll
@@ -133,13 +133,9 @@ int main() {
     });
 
     // Serve the HTML results page
-    CROW_ROUTE(app, "/results/<string>").methods("GET"_method)
-    ([&](const std::string& pollId) {
-         auto it = polls.find(pollId);
-        if(it == polls.end()) {
-            return crow::response(404, "Poll not found");
-        }
-        return crow::response(read_file_to_string("../src/templates/results.html"));
+     CROW_ROUTE(app, "/results/<string>")
+    ([](const std::string& pollId) {
+        return crow::response(read_file_to_string("./templates/results.html")); // Correct path for results.html
     });
 
     // Return JSON data for a specified poll
@@ -196,11 +192,7 @@ int main() {
     // Serve the submission page for creating new polls
     CROW_ROUTE(app, "/")
     ([]() {
-        try {
-            return crow::response(read_file_to_string("../src/templates/index.html"));
-        } catch (const std::runtime_error& e) {
-            return crow::response(404, "File not found");
-        }
+        return crow::response(read_file_to_string("./templates/index.html")); // Correct path for index.html
     });
 
     app.port(8080).multithreaded().run();
